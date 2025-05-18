@@ -5,7 +5,7 @@
   <!--Student Ajax Call Request -->
   <script src="/EduTrack/js/AjaxRequest.js"></script>
   <!--Admin Ajax Call Request -->
-  <script src="/EduTrack/js/adminAjaxRequest.js"></script>
+  <script src="/EduTrack/js/admin_Instructor_AjaxRequest.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
   </body>
 

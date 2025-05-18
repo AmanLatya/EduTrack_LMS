@@ -45,10 +45,59 @@ $('#AdminLoginBtn').click(function () {
     })
 
 });
-;
-
 
 // ---------------------------------Start Admin Login Code--------------------------------
+
+// ---------------------------------Start Instructor Login Code--------------------------------
+$('#InstructorLoginBtn').click(function () {
+    // Get email and password values from the form
+    let InstructorPassKey = $('#InstructorPassKey').val();
+    let InstructorPassword = $('#InstructorPassword').val();
+
+    let InstructorLoginFailedMsg = $('#InstructorLoginFailedMsg');
+    let InstructorLoginSuccessMsg = $('#InstructorLoginSuccessMsg');
+
+    $.ajax({
+        url: 'Instructor/GetInstructorLogin.php',
+        method: "POST",
+        data: {
+            checkInstructorLogin: "checkInstructorLogin",
+            InstructorPassKey: InstructorPassKey,
+            InstructorPassword: InstructorPassword,
+        },
+
+        success: function (response) {
+            // console.log("row", response);
+            if (response == 1) {
+                console.log("Login Success");
+                InstructorLoginSuccessMsg.text("Login Success").fadeIn();
+                // Append loading screen to body
+                $("body").append(`
+                        <div id="loading-screen" class="loading-overlay">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p>Redirecting...</p>
+                        </div>
+                    `);
+
+                // Wait for 2 seconds before redirecting
+                setTimeout(function () {
+                    // Hide the loading screen and redirect to the dashboard
+                    $("#loading-screen").fadeOut("slow", function () {
+                        window.location.href = "./Instructor/index.php";
+                    });
+                }, 1200);
+            }
+            else {
+                InstructorLoginFailedMsg.text("Invalid Passkey or Password").fadeIn();
+            }
+        }
+    })
+
+});
+
+// ---------------------------------Start Instructor Login Code--------------------------------
 
 
 // -----------------x---------------------x-------------------x---------------------x----------------------x---------------------
