@@ -1,0 +1,723 @@
+/* ------------------------------ Screen-ScrollBar----------------------------------------*/
+::-webkit-scrollbar {
+    width: 0.75rem;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: rgb(212, 212, 212);
+    border-radius: 3rem;
+}
+
+
+/* -----------------------------Start Loading Screen------------------------------------- */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+
+
+/* -----------------------------End Loading Screen------------------------------------- */
+
+/* ------x----------------------x----------------------x------------------x----------------------x----------------- */
+
+/* Start Dummy Courses */
+
+/* Course Card Styling */
+.course-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.course-card:hover {
+    transform: scale(1.05);
+} 
+
+/* Image Container */
+.course-img-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.course-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} 
+
+/* Course Title */
+.course-card h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 15px 0 5px 0;
+} 
+
+/* Course Details */
+ .course-card p {
+    font-size: 14px;
+    margin: 5px 0;
+} 
+
+/* Enroll Button */
+.btn-enroll {
+    display: inline-block;
+    background: #ff6666;
+    color: white;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+} 
+
+.btn-enroll:hover {
+    background: #ff4d4d;
+} 
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .course-card {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+}
+
+
+/* End Dummy Courses */
+
+
+/* ---------------------------------------------------------Start Course Detail--------------------------------------- */
+.header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.banner {
+    position: relative;
+    overflow: hidden;
+}
+.banner img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tab-content {
+    margin-top: 20px;
+}
+.tab-link {
+    cursor: pointer;
+}
+.active-tab {
+    border-bottom: 2px solid #007bff;
+    color: #007bff;
+}
+.price {
+    font-size: 2rem;
+    color: #007bff;
+}
+.discount {
+    color: #28a745;
+}
+.original-price {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+/* -----------------------------------------------End Course Detail----------------------------------------- */
+
+
+/* Start All Courese */
+/* General Course Section Styling */
+.CourseContainer {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 100%;
+}
+
+/* Course Heading */
+ .coursesHeading {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* View All Button Styling */
+ #ViewAllCourses {
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+} 
+
+/* Hover Effect */
+ #ViewAllCourses:hover {
+    background: #0056b3;
+    color: #fff;
+} 
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .coursesHeading {
+        font-size: 1.5rem;
+    }
+
+    #ViewAllCourses {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+} 
+
+/* End All Courese */
+
+
+
+
+/*------------------------------Start Student SignUp Form--------------------------------------*/
+/* 🔹 Form Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animated-form {
+    animation: fadeIn 0.5s ease-in-out;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.input-animated {
+    transition: all 0.3s ease-in-out;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.input-animated:focus {
+    border-color: #007bff;
+    box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+    transform: scale(1.02);
+}
+
+.animated-btn {
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.animated-btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary:hover {
+    background-color: #6c757d;
+}
+
+.error-msg {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.error-msg.show {
+    opacity: 1;
+} 
+
+
+/*------------------------------End Student SignUp Form--------------------------------------*/
+
+
+
+
+
+
+
+/*------------------------------Start Student Login Form--------------------------------------*/
+
+/*------------------------------End Student Login Form--------------------------------------*/
+
+
+
+/*------------------------------Start Student Dashboard Form--------------------------------------*/
+.header-bg {
+    background: linear-gradient(90deg, #6b46c1, #805ad5);
+}
+.progress-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    background-color: #6b46c1;
+    color: white;
+    border-radius: 8px;
+}
+.calendar .class-day {
+    background-color: #63b3ed;
+    color: white;
+}
+.calendar .day {
+    padding: 5px;
+    text-align: center;
+}
+.chart-container {
+    position: relative;
+    height: 300px;
+}
+/*------------------------------End Student Dashboard Form--------------------------------------*/
+
+
+
+
+/*------------------------------Start Student Profile Form--------------------------------------*/
+
+.header-bg {
+    background: linear-gradient(90deg, #6b46c1, #805ad5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.profile-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+.input-field:focus {
+    border-color: #6b46c1;
+    box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+}
+
+.save-btn {
+    background: linear-gradient(90deg, #6b46c1, #805ad5);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+}
+
+.decorative-element {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+}
+.decorative-left {
+    left: -50px;
+    top: -50px;
+}
+.decorative-right {
+    right: -50px;
+    bottom: -50px;
+} 
+
+/*------------------------------End Student Profile Form--------------------------------------*/
+
+
+/*------------------------------Start Student Feedback--------------------------------------*/
+
+
+/* Custom CSS for Feedback Section */
+#feedback {
+    /* background-color: #f8f9fa; */
+    padding: 50px 0;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
+#feedback h1 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 40px !important;
+    position: relative;
+}
+
+#feedback h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #3498db;
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+.feedback-card {
+    background: white;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    height: 100%;
+    border: none !important;
+}
+
+.feedback-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.feedback-card img {
+    object-fit: cover;
+    border: 3px solid #3498db;
+}
+
+.feedback-card h5 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.feedback-card span {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.feedback-card p {
+    color: #555;
+    font-style: italic;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5% !important;
+    opacity: 1 !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #3498db !important;
+    background-size: 60%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: #2980b9 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .col-md-3 {
+        margin-bottom: 20px;
+    }
+
+    .carousel-item .row {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/*------------------------------Index Section--------------------------------------*/
+#bodyContainer {
+    background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+    min-height: 70vh;
+    padding: 5rem 2rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+#bodyContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+    opacity: 0.3;
+}
+
+.lms {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.lms h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    line-height: 1.2;
+}
+
+.lms p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #FFF;
+}
+
+.feature-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .lms h1 {
+        font-size: 2.5rem;
+    }
+
+    .lms p {
+        font-size: 1.1rem;
+    }
+
+    #bodyContainer {
+        min-height: auto;
+        padding: 3rem 1.5rem;
+    }
+
+    .features-grid {
+        display: none;
+        grid-template-columns: 1fr;
+    }
+}
+
+/*------------------------------Index Section--------------------------------------*/
+
+
+/*------------------------------Course Section--------------------------------------*/
+
+/* Custom CSS for Free Courses Section */
+#free-courses {
+    background-color: #ffffff;
+    padding: 60px 0;
+}
+
+#free-courses h2 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 40px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#free-courses h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #3498db, #9b59b6);
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+.course-card {
+    background: white;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border: none;
+    height: 100%;
+    position: relative;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.course-img-container {
+    height: 180px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.course-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.course-img-container:hover img {
+    transform: scale(1.05);
+}
+
+.course-card h4 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.course-card h4 i {
+    color: #3498db;
+    margin-right: 8px;
+}
+
+.course-card p {
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+.course-card p i {
+    color: #3498db;
+    margin-right: 8px;
+}
+
+.course-card .row div {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.course-card strong {
+    color: #2c3e50;
+}
+
+.course-card del {
+    color: #e74c3c;
+}
+
+.btn-enroll {
+    display: inline-block;
+    background: linear-gradient(to right, #3498db, #9b59b6);
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+
+.btn-enroll:hover {
+    background: linear-gradient(to right, #2980b9, #8e44ad);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-enroll i {
+    margin-right: 8px;
+}
+
+#all-courses {
+    background: linear-gradient(to right, #e74c3c, #f39c12);
+    color: white;
+    border: none;
+    padding: 12px 30px !important;
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+#all-courses:hover {
+    background: linear-gradient(to right, #c0392b, #d35400);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .course-card {
+        margin-bottom: 30px;
+    }
+
+    .course-img-container {
+        height: 150px;
+    }
+}
+
+/*------------------------------Course Section--------------------------------------*/

@@ -1,0 +1,110 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Full-screen background */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('img3.jpg') no-repeat center center/cover;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* Glassmorphic Panel */
+.panel {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    padding: 35px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.panel:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* Panel Header */
+
+/* Input Fields */
+.form-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: white;
+    font-size: 25px;
+}
+
+.form-control {
+    width: 100%;
+    padding:16px;
+    border-radius: 12px;
+    border: none;
+    font-size: 18px;
+    background: white;
+    color: rgb(0, 0, 0);
+}
+
+.form-control:focus {
+    border: 1px solid #007bff;
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.9);
+    /* background: rgba(255, 255, 255, 0.35); */
+}
+
+/* Readonly Input Styling */
+.form-control[readonly] {
+    /* background: rgba(230, 230, 230, 0.4); */
+    cursor: not-allowed;
+}
+
+/* Submit Button */
+.btn-success {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: white;
+    font-size: 20px;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #0056b3, #00a2ff);
+    box-shadow: 0 0 14px rgba(0, 123, 255, 0.8);
+    transform: scale(1.02);
+}
+
+/* Disable Button Styling */
+.btn[disabled] {
+    background: #bbbbbb;
+    color: #555555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Mobile Responsive */
+@media (max-width: 450px) {
+    .panel {
+        width: 95%;
+        padding: 30px;
+    }
+    .btn-success {
+        font-size: 18px;
+    }
+}
