@@ -1,3 +1,10 @@
+window.onload = function () {
+    if (!window.location.hash.includes("#reloaded")) {
+        window.location = window.location + "#reloaded";
+        window.location.reload();
+    }
+};
+
 // ---------------------------------Start Admin Login Code--------------------------------
 $('#AdminLoginBtn').click(function () {
     // Get email and password values from the form
@@ -274,16 +281,16 @@ $(".deleteCourse").on("click", function () {
 $(document).ready(function () {
     $(".deleteLesson").on("click", function () {
         alert("Are You sure ?");
-        let assignmentId = $(this).data("id");
+        let ass_num = $(this).data("id");
         if (confirm("Are you sure you want to delete this lesson?")) {
             $.ajax({
                 url: "delete.php",
                 type: "POST",
-                data: { l_id: assignmentId },
+                data: { l_id: ass_num },
                 dataType: "json",
                 success: function (data) {
                     if (data.success) {
-                        $("#lessonRow_" + assignmentId).remove();
+                        $("#lessonRow_" + ass_num).remove();
                     } else {
                         alert("Error: " + data.message);
                     }
@@ -306,29 +313,30 @@ $(document).ready(function () {
 // This is the code for delete lesson from the ASSIGNMENT table with the help of Assignment.php file
 $(document).ready(function () {
     $(".deleteAssignment").on("click", function () {
-        alert("Are You sure ?");
-        let assignmentId = $(this).data("id");
+        let ass_num = $(this).data("id");
         if (confirm("Are you sure you want to delete this ASSIGNMENT?")) {
             $.ajax({
                 url: "delete.php",
                 type: "POST",
-                data: { ass_id: assignmentId },
+                data: { ass_num: ass_num },
                 dataType: "json",
                 success: function (data) {
-                    // console.log(data);
                     if (data.success) {
-                        $("#assignmentRow_" + assignmentId).remove();
+                        alert(data.message); // ✅ FIXED
+                        $("#assignmentRow_" + ass_num).remove();
                     } else {
                         alert("Error: " + data.message);
                     }
                 },
                 error: function (xhr, status, error) {
-                    console.error("Error:", error);
+                    console.error("AJAX Error:", error);
+                    alert("AJAX request failed.");
                 }
             });
         }
     });
 });
+
 
 
 // Upload Current date and time
@@ -409,3 +417,84 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // ---------------------------------------END ASSIGNMENT MANAGEMENT---------------------------------
 // -------------X-------------------------X----------------------X-------------------------X--------------------------X-----
+
+
+// ---------------------------------------START APPLY OFFER---------------------------------
+// 
+// ----------------------Offer To All------------
+
+$('#ApplyOfferAtAllForm').submit(function (e) {
+    e.preventDefault(); // Prevent default form submission
+    let Offer = $('#OfferValue').val().trim();
+
+    if (Offer === "" || isNaN(Offer) || Offer < 0) {
+        alert("Please enter a valid offer percentage.");
+        return;
+    }
+
+    if (confirm(`Are you sure you want to apply a ${Offer}% discount to all courses?`)) {
+        $.ajax({
+            url: "GetOffer.php",
+            type: "POST",
+            data: { Offer: Offer },
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload(); // Refresh the course list
+                } else {
+                    alert("Error: " + data.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", error);
+                alert("Something went wrong while applying the offer.");
+            }
+        });
+    }
+});
+
+// ----------------------Offer To All------------
+
+// ----------------------Offer To One------------
+
+$('#ApplyOfferAtOneForm').submit(function (e) {
+    e.preventDefault(); // Prevent default form submission
+    let Offer = $('#OfferValue').val().trim();
+    let course_id = $('#course_id').val().trim();
+
+    if (Offer === "" || isNaN(Offer) || Offer < 0 || course_id === "") {
+        alert("Please enter a valid offer percentage and select a course.");
+        return;
+    }
+
+    if (confirm(`Are you sure you want to apply a ${Offer}% discount to this course?`)) {
+        $.ajax({
+            url: "GetOffer.php",
+            type: "POST",
+            data: {
+                Offer: Offer,
+                course_id: course_id
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload(); // Refresh the course list
+                } else {
+                    alert("Error: " + data.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", error);
+                alert("Something went wrong while applying the offer.");
+            }
+        });
+    }
+});
+
+// ----------------------Offer To One------------
+
+
+// ---------------------------------------END APPLY OFFER---------------------------------
+// 

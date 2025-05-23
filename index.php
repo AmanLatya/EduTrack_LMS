@@ -133,4 +133,5 @@ include('./freeCourses.php');
 
 
 <!-- Html Footer Links -->
+
 <?php include('./layout/htmlFooterLinks.php') ?>

@@ -62,8 +62,10 @@ include('../layout/htmlHeadLinks.php');
                             <i class="fas fa-ellipsis-v me-3"></i> More
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                            <li><a class="dropdown-item" href="./Offer.php?action=all"><i class="fas fa-cog me-3"></i>Apply Offer at-once</a></li>
                             <li><a class="dropdown-item" href="./ChangePassword.php"><i class="fas fa-cog me-3"></i> Change Password</a></li>
                             <li><a class="dropdown-item" href="../Logout.php"><i class="fas fa-sign-out-alt me-3"></i> Logout</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -115,7 +117,7 @@ include('../layout/htmlHeadLinks.php');
 </div>
 
 <script>
-    // Add click event listener to the dropdown button
+    // Add click event listener to the dropdown button  <!-- https://pornxp.com/videos/15936919779 -->
     document.getElementById('adminDropdown').addEventListener('click', function() {
         this.parentElement.classList.toggle('show');
     });

@@ -40,7 +40,7 @@ $msg = "";
                         Course Id: <?php echo $row['course_id']; ?>
                         Course Name: <?php echo $row['course_name']; ?>
                     </h3>
-                    <a href="./AddCourse.php" class="text-decoration-none text-light ">
+                    <a href="./AddAssignment.php?course_id=<?php echo $row['course_id']?>" class="text-decoration-none text-light ">
                         <button class="btn btn-danger add-btn m-3" id="add-course-btn">
                             <i class="fas fa-plus"></i>
                         </button>
@@ -63,7 +63,7 @@ $msg = "";
                         $result = $connection->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             echo '
-                            <tr id="assignmentRow_' . $row['ass_id'] . '">
+                            <tr id="assignmentRow_' . $row['ass_num'] . '">
                                 <td><strong>' . $row['ass_num'] . '</strong></td>
                                 <td>' . $row['ass_uploadDate'] . '</td>
                                 <td>' . $row['ass_subDate'] . '</td>
@@ -72,13 +72,13 @@ $msg = "";
                                 </td>
                                 <td class="d-flex justify-content-center align-items-center">
                                     <form action="editAssignment.php" method="POST">
-                                        <input type="hidden" name="l_id" value="' . $row["ass_id"] . '">
+                                        <input type="hidden" name="l_id" value="' . $row["ass_num"] . '">
                                         <button class="btn btn-info btn-sm m-1" name="editAssignment" value="editAssignment">
                                             <i class="fas fa-pen m-1"></i>
                                         </button>
                                     </form>
 
-                                    <button class="btn btn-secondary btn-sm m-1 deleteAssignment" data-id="' . $row["ass_id"] . '">
+                                    <button class="btn btn-secondary btn-sm m-1 deleteAssignment" data-id="' . $row["ass_num"] . '">
                                         <i class="fas fa-trash m-1"></i>
                                     </button>
                                 </td>

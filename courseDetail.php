@@ -111,16 +111,26 @@ if (isset($_GET['course_id'])) {
                 <div class="" id="purchase-course">
                     <h2 class="font-weight-bold mt-4">Purchase Course</h2>
                     <div class="bg-light p-4 rounded">
+                        <?php
+                        $price = (float)$row['course_price'];
+                        $originalPrice = (float)$row['course_original_price'];
+                        $hasDiscount = $originalPrice > $price;
+                        $discountPercent = $hasDiscount ? round((($originalPrice - $price) / $originalPrice) * 100) : 0;
+                        ?>
                         <p class="text-muted">
-                            <span class="price">Rs. <?php echo $row['course_price'] ?></span>
-                            <span class="original-price">Rs. <?php echo $row['course_original_price'] ?></span>
-                            <span class="discount">(50% off)</span>
+                            <span class="price">Rs. <?php echo $price ?></span>
+                            <?php if ($hasDiscount) { ?>
+                                <span class="original-price">Rs. <?php echo $originalPrice ?></span>
+                                <span class="discount">(<?php echo $discountPercent ?>% off)</span>
+                            <?php } ?>
                         </p>
                         <p class="text-muted">
                             Get lifetime access to this course, including all future updates.
                         </p>
                         <?php if (isset($_SESSION['is_stuLogin'])) { ?>
-                            <a href="./Payment/index.php?orderCourse_id=<?php echo $courseId ?>&StuEmail=<?php echo $_SESSION['stuLoginEmail'] ?>" class="text-light text-decoration-none"><button class="btn btn-danger btn-lg" id="buyCourse">Buy Now</button></a>
+                            <a href="./Payment/index.php?orderCourse_id=<?php echo $courseId ?>&StuEmail=<?php echo $_SESSION['stuLoginEmail'] ?>" class="text-light text-decoration-none">
+                                <button class="btn btn-danger btn-lg" id="buyCourse">Buy Now</button>
+                            </a>
                         <?php } else { ?>
                             <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#StudentLoginModal" id="buyCourse">
                                 Buy Now
@@ -128,6 +138,7 @@ if (isset($_GET['course_id'])) {
                         <?php } ?>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

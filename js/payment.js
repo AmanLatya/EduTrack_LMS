@@ -1,3 +1,10 @@
+window.onload = function () {
+    if (!window.location.hash.includes("#reloaded")) {
+        window.location = window.location + "#reloaded";
+        window.location.reload();
+    }
+};
+
 function validateEmail(email) {
     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return re.test(email);
@@ -24,7 +31,7 @@ function validateForm() {
 jQuery(document).ready(function ($) {
     $('input').on('input', validateForm);
 
-    $('#PayNow').click(function(e) {
+    $('#PayNow').click(function (e) {
         e.preventDefault();
         if ($(this).prop('disabled')) return;
 
@@ -43,7 +50,7 @@ jQuery(document).ready(function ($) {
             url: "submitpayment.php",
             data: formData,
             dataType: 'json',
-        }).done(function(data) {
+        }).done(function (data) {
             if (data.res === 'success') {
                 var options = {
                     "key": data.razorpay_key,
@@ -52,14 +59,14 @@ jQuery(document).ready(function ($) {
                     "name": "EduTrack",
                     "description": "Course Payment",
                     "order_id": data.rpay_order_id,
-                    "handler": function(response) {
+                    "handler": function (response) {
                         // SUCCESS: Insert to DB now
                         $.post('verifyPayment.php', {
                             student_id: data.student_id,
                             course_id: data.course_id,
                             rpay_order_id: data.rpay_order_id,
                             payAmount: data.amount
-                        }, function(res) {
+                        }, function (res) {
                             if (res === 'success') {
                                 window.location.href = "success.php?order_id=" + data.rpay_order_id;
                             } else {

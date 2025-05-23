@@ -1,3 +1,10 @@
+window.onload = function () {
+    if (!window.location.hash.includes("#reloaded")) {
+        window.location = window.location + "#reloaded";
+        window.location.reload();
+    }
+};
+
 $(document).ready(function () {
     function validateForm() {
         let email = $("#email").val().trim();

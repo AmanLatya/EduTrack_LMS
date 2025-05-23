@@ -75,7 +75,9 @@ $progress = ($totalAssignments > 0) ? round(($submittedAssignments / $totalAssig
                 <p class="text-purple-200">Welcome back to your dashboard</p>
             </div>
             <div class="d-flex align-items-center mt-3 mt-md-0">
-                <i class="fas fa-bell text-purple-200 me-3"></i>
+                <a class="" data-bs-toggle="modal" data-bs-target="#NotificationModal">
+                    <i class="fas fa-bell text-purple-600 fs-5 me-3 Bell"></i>
+                </a>
                 <div class="d-flex align-items-center">
                     <div>
                         <p class="fw-bold text-white mb-0"><?php echo $name ?></p>
@@ -112,9 +114,9 @@ $progress = ($totalAssignments > 0) ? round(($submittedAssignments / $totalAssig
                             <p class="fs-5 fw-bold mb-0"><?php echo "$submittedAssignments of $totalAssignments"; ?></p>
                             <div class="progress mt-2" style="height: 10px;">
                                 <div class="progress-bar bg-success" role="progressbar"
-                                     style="width: <?php echo $progress; ?>%;" 
-                                     aria-valuenow="<?php echo $progress; ?>" 
-                                     aria-valuemin="0" aria-valuemax="100">
+                                    style="width: <?php echo $progress; ?>%;"
+                                    aria-valuenow="<?php echo $progress; ?>"
+                                    aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>
                             <small class="text-muted"><?php echo $progress; ?>% complete</small>
@@ -145,16 +147,16 @@ $progress = ($totalAssignments > 0) ? round(($submittedAssignments / $totalAssig
                                 if ($courseResult && $courseResult->num_rows > 0) {
                                     $courseData = $courseResult->fetch_assoc();
                         ?>
-                            <div class="col-md-6 mb-3 course-card">
-                                <div class="d-flex align-items-center bg-purple-100 p-3 rounded">
-                                    <img src="<?php echo $courseData['course_img']; ?>" alt="<?php echo $courseData['course_name']; ?>" class="me-3">
-                                    <div>
-                                        <p class="fw-bold mb-0"><?php echo $courseData['course_name']; ?></p>
-                                        <p class="text-secondary mb-2">Guided by <?php echo $courseData['course_author']; ?></p>
-                                        <a href="./EnrolledCourse.php?enrolledCourse_id=<?php echo $courseId; ?>" class="btn btn-primary">Continue</a>
+                                    <div class="col-md-6 mb-3 course-card">
+                                        <div class="d-flex align-items-center bg-purple-100 p-3 rounded">
+                                            <img src="<?php echo $courseData['course_img']; ?>" alt="<?php echo $courseData['course_name']; ?>" class="me-3">
+                                            <div>
+                                                <p class="fw-bold mb-0"><?php echo $courseData['course_name']; ?></p>
+                                                <p class="text-secondary mb-2">Guided by <?php echo $courseData['course_author']; ?></p>
+                                                <a href="./EnrolledCourse.php?enrolledCourse_id=<?php echo $courseId; ?>" class="btn btn-primary">Continue</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
                         <?php
                                 } else {
                                     echo "<p>No data found for course ID: $courseId</p>";
@@ -224,4 +226,7 @@ $progress = ($totalAssignments > 0) ? round(($submittedAssignments / $totalAssig
     });
 </script>
 
-<?php include '../layout/adminFooter.php'; ?>
+<?php
+include './NotificationModal.php';
+include '../layout/adminFooter.php';
+?>

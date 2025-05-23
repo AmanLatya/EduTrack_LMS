@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+?>
+
 <header class="sticky-top">
     <nav class="navbar navbar-expand-sm shadow bg-white p-4">
         <div class="container-fluid nav-header">
@@ -24,7 +31,7 @@
                             </a>
                         </li>
                         <li class="nav-item fs-5 px-2">
-                            <a class="nav-link" href="/EduTrack/allCourses.php">
+                            <a class="nav-link" href="./Assignment.php">
                                 <!-- <i class="fas fa-book-open"></i> -->
                                 Assignments
                             </a>
@@ -39,6 +46,11 @@
                             <a class="nav-link" href="/EduTrack/allCourses.php">
                                 <!-- <i class="fas fa-book-open"></i> -->
                                 Attendence
+                            </a>
+                        </li>
+                        <li class="nav-item fs-5 px-2">
+                            <a class="btn btn-info px-3 py-1 text-dark fw-bold" href="../Logout.php">
+                                <i class="fas fa-sign-in-alt"></i> Logout
                             </a>
                         </li>
 

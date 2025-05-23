@@ -3,6 +3,7 @@ include __DIR__ . '/../ConnectDataBase.php';
 
 if (!isset($_SESSION)) {
     session_start();
+    
 }
 ?>
 <header class="sticky-top">
@@ -52,6 +53,24 @@ if (!isset($_SESSION)) {
                                 <li class="nav-item fs-5 px-2">
                                     <a class="nav-link" href="./Student/StudentDashBoard.php">
                                         <i class="fas fa-user"></i> My DashBoard
+                                    </a>
+                                </li>
+                                <li class="nav-item fs-5 p-2">
+                                    <a class="btn btn-info px-3 py-1 text-dark fw-bold" href="./Logout.php">
+                                        <i class="fas fa-sign-in-alt"></i> Logout
+                                    </a>
+                                </li>
+                                ';
+                            }
+                        } else if (isset($_SESSION['is_InstructorLogin']) && isset($_SESSION['InstructorPassKey'])) {
+                            $sql = "SELECT * FROM instructor WHERE Inst_PassKey = '{$_SESSION['InstructorPassKey']}'";
+                            $result = $connection->query($sql);
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                echo '
+                                <li class="nav-item fs-5 px-2">
+                                    <a class="nav-link" href="./Instructor/">
+                                        <i class="fas fa-user"></i>' . $row['Inst_PassKey'] . '
                                     </a>
                                 </li>
                                 <li class="nav-item fs-5 p-2">

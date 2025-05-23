@@ -30,7 +30,7 @@ $result = $connection->query($sql);
                             <tr>
                                 <th>Course ID</th>
                                 <th>Name</th>
-                                <th>Description</th>
+                                <!-- <th>Description</th> -->
                                 <th>Author</th>
                                 <th>Image</th>
                                 <th>Duration</th>
@@ -40,29 +40,39 @@ $result = $connection->query($sql);
                             </tr>
                         </thead>
                         <tbody id="coursesTableBody">
-                            <?php while ($row = $result->fetch_assoc()) {
-                                echo '<tr class="course-row" data-title="' . strtolower($row['course_name']) . '" id="courseRow_' . $row['course_id'] . '">
-                                    <td><strong>' . $row['course_id'] . '</strong></td>
-                                    <td><strong>' . $row['course_name'] . '</strong></td>
-                                    <td>' . $row['course_description'] . '</td>
-                                    <td>' . $row['course_author'] . '</td>
-                                    <td><img src="' . $row['course_img'] . '" alt="Course Image" class="img-thumbnail" style="max-width: 80px; height: auto;" loading="lazy"></td>
-                                    <td>' . $row['course_duration'] . '</td>
-                                    <td>₹' . $row['course_price'] . '</td>
-                                    <td>₹' . $row['course_original_price'] . '</td>
+                            <?php while ($row = $result->fetch_assoc()) { ?>
+                                <tr class="course-row" data-title="<?= strtolower($row['course_name']) ?>" id="courseRow_<?= $row['course_id'] ?>">
+                                    <td><strong><?= $row['course_id'] ?></strong></td>
+                                    <td><strong><?= $row['course_name'] ?></strong></td>
+                                    <!-- <td> -->
+                                    <?php 
+                                    // $row['course_description'] 
+                                    ?>
+                                    <!-- </td> -->
+                                    <td><?= $row['course_author'] ?></td>
+                                    <td><img src="<?= $row['course_img'] ?>" alt="Course Image" class="img-thumbnail" style="max-width: 80px; height: auto;" loading="lazy"></td>
+                                    <td><?= $row['course_duration'] ?></td>
+                                    <td>₹<?= $row['course_price'] ?></td>
+                                    <td>₹<?= $row['course_original_price'] ?></td>
                                     <td class="d-flex justify-content-center align-items-center">
                                         <form action="editCourse.php" method="POST" class="m-0">
-                                            <input type="hidden" name="id" value="' . $row["course_id"] . '">
+                                            <input type="hidden" name="id" value="<?= $row["course_id"] ?>">
                                             <button class="btn btn-info btn-sm m-1" title="Edit">
                                                 <i class="fas fa-pen"></i>
                                             </button>
                                         </form>
-                                        <button class="btn btn-danger btn-sm m-1 deleteCourse" data-id="' . $row["course_id"] . '" title="Delete">
+
+                                        <!-- ✅ New Apply Offer Button -->
+                                        <a href="Offer.php?action=single&course_id=<?= $row['course_id'] ?>" class="btn btn-warning btn-sm m-1" title="Apply Offer">
+                                            <i class="fas fa-percentage"></i>
+                                        </a>
+
+                                        <button class="btn btn-danger btn-sm m-1 deleteCourse" data-id="<?= $row["course_id"] ?>" title="Delete">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
-                                </tr>';
-                            } ?>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -76,11 +86,11 @@ $result = $connection->query($sql);
 <?php include '../layout/adminFooter.php'; ?>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('searchInput');
         const courseRows = document.querySelectorAll('.course-row');
 
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             const searchTerm = searchInput.value.toLowerCase();
             courseRows.forEach(row => {
                 const title = row.getAttribute('data-title');

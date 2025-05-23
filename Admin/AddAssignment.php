@@ -6,12 +6,13 @@ include '../ConnectDataBase.php';
 $msg = ""; // Initialize message variable
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['addAssignment'])) {
-    if (empty($_REQUEST['courseId']) || empty($_REQUEST['assNum']) || empty($_REQUEST['upDate']) || empty($_REQUEST['subDate']) || !isset($_FILES['pdfLink']) || $_FILES['pdfLink']['error'] != 0) {
+    if (empty($_REQUEST['courseId']) || empty($_REQUEST['assName']) || empty($_REQUEST['upDate']) || empty($_REQUEST['subDate']) || !isset($_FILES['pdfLink']) || $_FILES['pdfLink']['error'] != 0) {
         $msg = '<div class="alert alert-warning text-center">Fill all details</div>';
     } else {
         // Sanitize input
         $courseId = trim($_REQUEST['courseId']);
-        $assNum = trim($_REQUEST['assNum']);
+        // $courseName = trim($_REQUEST['courseName']);
+        $assName = trim($_REQUEST['assName']);
         $upDate = trim($_REQUEST['upDate']);
         $subDate = trim($_REQUEST['subDate']);
 
@@ -30,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['addAssignment'])) {
 
             if ($result->num_rows > 0) {
                 // Course exists, Upload the Assignment
-                $insertQuery = "INSERT INTO assignment (ass_num, ass_uploadDate, ass_subDate, ass_file, course_id) VALUES ('$assNum','$upDate','$subDate','$assignmentFolder','$courseId')";
+                $insertQuery = "INSERT INTO assignment (ass_num, ass_uploadDate, ass_subDate, ass_file, course_id) VALUES ('$assName','$upDate','$subDate','$assignmentFolder','$courseId')";
 
                 if ($connection->query($insertQuery) == TRUE) {
                     $msg = '<div class="alert alert-success text-center">Assignment Added Successfully!</div>';
@@ -45,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['addAssignment'])) {
             $msg = '<div class="alert alert-danger text-center">Error uploading file. Try again.</div>';
         }
     }
-    $connection->close();
 }
 ?>
 
@@ -59,20 +59,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['addAssignment'])) {
         </h3>
         <form method="POST" enctype="multipart/form-data">
             <div class="mb-3 ">
-                <label class="form-label">Course Id</label>
+                <label class="form-label">Course Name</label>
+                <input type="number" name="courseId" value="<?php echo $_GET['course_id'] ?>" hidden>
                 <div class="input-group custom-input-group">
-                    <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
-                    <input type="number" class="form-control" name="courseId" placeholder="Enter Course ID" required>
+                    <?php
+                    $course_id = $_GET['course_id'];
+                    $sql = "SELECT course_name FROM courses WHERE course_id = $course_id";
+                    $result = $connection->query($sql); // ❌ This happens after $connection->close()
+
+                    if ($result && $result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                    ?>
+                        <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                        <input type="text" class="form-control"
+                            value="<?php
+                                    echo $row['course_name'];
+                                } ?>" name="courseName" placeholder="Enter Course ID" readonly>
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label">Assignment No.</label>
+                <label class="form-label">Assignment Name</label>
                 <div class="input-group custom-input-group">
                     <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
-                    <input type="number" class="form-control" name="assNum" placeholder="Enter Assignment No." required>
+                    <input type="text" class="form-control" name="assName" placeholder="Enter Assignment Name" required>
                 </div>
             </div>
-
             <div class="mb-3">
                 <label class="form-label">Upload Date & Time</label>
                 <div class="input-group custom-input-group">
@@ -80,7 +91,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['addAssignment'])) {
                     <input type="datetime-local" class="form-control" name="upDate" id="uploadDateTime" required>
                 </div>
             </div>
-
             <div class="mb-3">
                 <label class="form-label">Submission Date & Time</label>
                 <div class="input-group custom-input-group">
@@ -88,8 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['addAssignment'])) {
                     <input type="datetime-local" class="form-control" name="subDate" required>
                 </div>
             </div>
-
-
             <div class="mb-3">
                 <label class="form-label">Upload Assignment PDF</label>
                 <div id="dropZone" class="input-group custom-input-group text-center p-4 border border-primary rounded">
@@ -100,7 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['addAssignment'])) {
                 <div id="fileInfo" class="mt-2 text-muted"></div>
                 <div id="fileError" class="text-danger mt-2"></div>
             </div>
-
             <div class="mb-3 text-center">
                 <button type="submit" name="addAssignment" class="btn btn-primary custom-btn-primary">
                     <i class="fas fa-plus-circle"></i> Save
@@ -115,4 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['addAssignment'])) {
     </div>
 </div>
 
-<?php include '../layout/adminFooter.php'; ?>
+<?php
+$connection->close();
+include '../layout/adminFooter.php';
+?>

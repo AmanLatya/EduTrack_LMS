@@ -1,17 +1,13 @@
-<?php 
-include '../layout/htmlHeadLinks.php';
-include './Header.php';
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 
-// include './layout/htmlHeadLinks.php';
-// include './layout/htmlFooterLinks.php';
+include '../layout/htmlHeadLinks.php';
+include '../layout/htmlFooterLinks.php';
+include './Header.php';
 ?>
 <h1>Welcome Instructor</h1>
-<a class="btn btn-info px-3 py-1 text-dark fw-bold" href="../Logout.php">
-    <i class="fas fa-sign-in-alt"></i> Logout
-</a>
-
-
-<?php 
+<?php
 include '../layout/adminFooter.php';
-
 ?>

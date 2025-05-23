@@ -2,7 +2,7 @@
     <h2 class="text-center py-3">Courses</h2>
     <div class="row g-4">
         <?php
-        $sql = "SELECT * FROM courses LIMIT 2,3";
+        $sql = "SELECT * FROM courses WHERE course_price = 0";
         $result = $connection->query($sql);
         include './Courses.php';
         ?>

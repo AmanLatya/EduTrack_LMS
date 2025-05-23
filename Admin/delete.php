@@ -53,10 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['l_id'])) {
 
 
 // -------------------------------START DELETE ASSIGNMENT-----------------------
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ass_id'])) {
-    $assignmentId = intval($_POST['ass_id']);
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ass_num'])) {
+    $ass_num = intval($_POST['ass_num']);
     
-    $sql = "DELETE FROM assignment WHERE ass_id = '$assignmentId'";
+    $sql = "DELETE FROM assignment WHERE ass_num = '$ass_num'";
     if ($connection->query($sql) == TRUE) {
         echo json_encode(["success" => true]);
     } else {

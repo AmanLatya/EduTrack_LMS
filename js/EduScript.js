@@ -1,3 +1,10 @@
+window.onload = function () {
+    if (!window.location.hash.includes("#reloaded")) {
+        window.location = window.location + "#reloaded";
+        window.location.reload();
+    }
+};
+
 $(document).ready(function () {
     let $toggleCourse = $("#viewAll");
 
@@ -30,7 +37,7 @@ function showTab(tabId) {
 }
 
 // Display the "Description" tab by default
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     showTab('description');
 });
 
@@ -41,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // -----------------------------Start Admin Dashboard--------------------------------
 
 // js
-document.getElementById("sidebarToggle").addEventListener("click", function() {
+document.getElementById("sidebarToggle").addEventListener("click", function () {
     document.getElementById("sidebar").classList.toggle("active");
 });
 
